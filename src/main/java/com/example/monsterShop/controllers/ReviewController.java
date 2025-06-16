@@ -1,4 +1,4 @@
 package com.example.monsterShop.controllers;
 
-public class CategoryController {
+public class ReviewController {
 }
