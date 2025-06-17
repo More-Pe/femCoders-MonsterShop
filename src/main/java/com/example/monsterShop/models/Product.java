@@ -23,10 +23,12 @@ public class Product {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private double rating;
 
+    @Column(nullable = true)
     private int reviewCount;
+
     private boolean featured;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = false)
@@ -36,13 +38,22 @@ public class Product {
 
     }
 
-    public Product(String name, String description, double price, String imageUrl, double rating, int reviewCount, boolean featured) {
+    public Product(Long id, String name, String description, double price, String imageUrl, double rating, int reviewCount, boolean featured) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
         this.rating = rating;
         this.reviewCount = reviewCount;
+        this.featured = featured;
+    }
+
+    public Product(String name, String description, double price, String imageUrl, boolean featured) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
         this.featured = featured;
     }
 
