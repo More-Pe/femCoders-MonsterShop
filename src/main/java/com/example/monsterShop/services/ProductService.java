@@ -7,6 +7,7 @@ import com.example.monsterShop.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -23,6 +24,10 @@ public class ProductService {
     }
 
     //getProductById
+    public Optional<ProductResponse> getProductById(Long id){
+        return productRepository.findById(id).map(product -> ProductMapper.entityToDto(product));
+    }
+
     //addProduct
     //updateProduct
     //deleteProduct
