@@ -17,7 +17,6 @@ public class ProductMapper {
         int reviewCount = product.getReviewCount();
         boolean featured = product.isFeatured();
 
-        return new ProductResponse(id, name, description, price, imageUrl, rating, reviewCount, featured
-        );
+        return new ProductResponse(id, name, description, price, imageUrl, rating, reviewCount, featured);
     }
 }
