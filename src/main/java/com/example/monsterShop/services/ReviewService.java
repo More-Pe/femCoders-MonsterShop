@@ -9,6 +9,8 @@ import com.example.monsterShop.repositories.ProductRepository;
 import com.example.monsterShop.repositories.ReviewRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
     private final ReviewRepository reviewRepository;
@@ -27,5 +29,8 @@ public class ReviewService {
         return ReviewMapper.entityToDto(savedReview);
     }
 
-    //getReviewsByProductId
+    public List<ReviewResponse> getReviewsByProductId(Long productId) {
+        List<Review> reviews = reviewRepository.findByProductId(productId);
+        return reviews.stream().map(review -> ReviewMapper.entityToDto(review)).toList();
+    }
 }
