@@ -1,13 +1,13 @@
 package com.example.monsterShop.controllers;
 
+import com.example.monsterShop.dtos.product.ProductRequest;
 import com.example.monsterShop.dtos.product.ProductResponse;
 import com.example.monsterShop.models.Product;
 import com.example.monsterShop.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,4 +29,10 @@ public class ProductController {
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id){
         return productService.getProductById(id).map(productResponse -> new ResponseEntity<>(productResponse, HttpStatus.OK)).orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @PostMapping("/products")
+    public ResponseEntity<ProductResponse> addProduct(@Valid @RequestBody ProductRequest productRequest){
+        return new ResponseEntity<>(productService.addProduct(productRequest), HttpStatus.CREATED);
+    }
+
 }

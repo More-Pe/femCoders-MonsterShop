@@ -1,9 +1,6 @@
 package com.example.monsterShop.dtos.product;
 
 import com.example.monsterShop.models.Product;
-import com.example.monsterShop.models.Review;
-
-import java.util.List;
 
 public class ProductMapper {
     public static Product dtoToEntity (ProductRequest dto){
@@ -11,7 +8,7 @@ public class ProductMapper {
     }
 
     public static ProductResponse entityToDto (Product product){
-        Long id = product.getId();;
+        Long id = product.getId();
         String name = product.getName();
         String description = product.getDescription();
         double price = product.getPrice();
@@ -19,10 +16,8 @@ public class ProductMapper {
         double rating = product.getRating();
         int reviewCount = product.getReviewCount();
         boolean featured = product.isFeatured();
-        //List<Review> reviews = product.getReviews();
 
         return new ProductResponse(id, name, description, price, imageUrl, rating, reviewCount, featured
-        //,reviews
         );
     }
 }

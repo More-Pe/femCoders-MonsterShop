@@ -22,6 +22,18 @@ public class Review {
    @JoinColumn(name = "product_id")
    private Product product;
 
+   public Review(){
+
+   }
+
+   public Review(Long id, String username, Double rating, String body, Product product){
+      this.id = id;
+      this.username = username;
+      this.rating = rating;
+      this.body = body;
+      this.product = product;
+   }
+
    public Long getId() {
       return id;
    }
