@@ -34,12 +34,21 @@ public class ProductService {
         return ProductMapper.entityToDto(savedProduct);
     }
 
-  /* public CategoryResponse addCategory(CategoryRequest categoryRequest){
-        Category newCategory = CategoryMapper.dtoToEntity(categoryRequest);
-        Category savedCategory = categoryRepository.save(newCategory);
-        return CategoryMapper.entityToDto(savedCategory);
-    }*/
+    public ProductResponse updateProduct(Long id, ProductRequest productRequest) {
+        return productRepository.findById(id)
+                .map(existingProduct -> {
+                    existingProduct.setName(productRequest.name());
+                    existingProduct.setDescription(productRequest.description());
+                    existingProduct.setPrice(productRequest.price());
+                    existingProduct.setImageUrl(productRequest.imageUrl());
+                    existingProduct.setFeatured(productRequest.featured());
+                    Product updatedProduct = productRepository.save(existingProduct);
+                    return ProductMapper.entityToDto(updatedProduct);
+                })
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+    }
 
-    //updateProduct
-    //deleteProduct
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
 }
