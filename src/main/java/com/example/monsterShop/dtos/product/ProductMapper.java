@@ -1,6 +1,11 @@
 package com.example.monsterShop.dtos.product;
 
+import com.example.monsterShop.dtos.review.ReviewMapper;
+import com.example.monsterShop.dtos.review.ReviewResponse;
 import com.example.monsterShop.models.Product;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductMapper {
     public static Product dtoToEntity (ProductRequest dto){
@@ -17,6 +22,10 @@ public class ProductMapper {
         int reviewCount = product.getReviewCount();
         boolean featured = product.isFeatured();
 
-        return new ProductResponse(id, name, description, price, imageUrl, rating, reviewCount, featured);
+        List<ReviewResponse> reviews = product.getReviews() != null
+                ? product.getReviews().stream().map(ReviewMapper::entityToDto).collect(Collectors.toList())
+                : List.of();
+
+        return new ProductResponse(id, name, description, price, imageUrl, rating, reviewCount, featured, reviews);
     }
 }
