@@ -2,7 +2,6 @@ package com.example.monsterShop.controllers;
 
 import com.example.monsterShop.dtos.product.ProductRequest;
 import com.example.monsterShop.dtos.product.ProductResponse;
-import com.example.monsterShop.models.Product;
 import com.example.monsterShop.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ProductController {
